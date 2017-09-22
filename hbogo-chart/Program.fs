@@ -2,11 +2,13 @@
 // See the 'F# Tutorial' project for more help.
 
 open HboGo
+open Excel
 
 [<EntryPoint>]
 let main argv = 
-    let movies = HboGo.getHboGoMovies
-    printfn "%A" movies
-    System.Console.ReadKey() |> ignore
-
+    let fileName = "movies.xlsx"
+    let sheetName = "Movies"
+    Excel.createSpreadsheet fileName sheetName HboGo.getHboGoMovies
+    
     0 // return an integer exit code
+    

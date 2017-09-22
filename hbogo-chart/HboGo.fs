@@ -4,6 +4,9 @@ open FSharp.Data
 open HtmlAgilityPack
 open System
 open System.IO
+open DocumentFormat.OpenXml
+open DocumentFormat.OpenXml.Packaging
+open DocumentFormat.OpenXml.Spreadsheet
 
 let removeWhitespaces (s:string) =
     s.Trim('\n', '\r', '\t', ' ')
@@ -22,7 +25,7 @@ let getHboGoMovies =
     let url = "http://www.hbo.cz/page/movies"
     let html = getHtmlDocument url
     let nodes = html.DocumentNode.SelectNodes "//div[@class=\"alphabet_item_container\"]/a"
-    let nodeList = List.ofSeq nodes
+    let nodeList = List.ofSeq nodes 
 
     let getHboMovieName (node:HtmlNode) =
         let text = node.InnerText
@@ -66,10 +69,6 @@ let getHboGoMovies =
 
     let moviesWithRating = nodeList |> List.map createHboMovie
                                     |> List.map createHboMovieWithRating
-    
-    let wr = new System.IO.StreamWriter(new FileStream("csv.csv", FileMode.OpenOrCreate), new Text.UnicodeEncoding())
-    moviesWithRating |> List.map(fun m -> m.Name + ";" + m.HboUrl + ";" + m.CsfdRating) |> String.concat(System.Environment.NewLine) |> wr.Write
-    wr.Close()
 
     moviesWithRating
     
