@@ -42,8 +42,12 @@ let createSpreadsheet (filepath:string) (sheetName:string) (movies:HboMovieWithR
         headerHboUrl.CellValue <- new CellValue("Hbo URL")
         headerHboUrl.DataType <- new EnumValue<CellValues>(CellValues.String)
 
+        let headerCsfdUrl = headerRow.AppendChild(new Cell())
+        headerCsfdUrl.CellValue <- new CellValue("ČSFD URL")
+        headerCsfdUrl.DataType <- new EnumValue<CellValues>(CellValues.String)
+
         let headerCsfdRating = headerRow.AppendChild(new Cell())
-        headerCsfdRating.CellValue <- new CellValue("ČSFD")
+        headerCsfdRating.CellValue <- new CellValue("ČSFD rating")
         headerCsfdRating.DataType <- new EnumValue<CellValues>(CellValues.String)
 
         let writeMovie (movie:HboMovieWithRating) =
@@ -55,6 +59,10 @@ let createSpreadsheet (filepath:string) (sheetName:string) (movies:HboMovieWithR
             let cellHboUrl = row.AppendChild(new Cell())
             cellHboUrl.CellValue <- new CellValue(movie.HboUrl)
             cellHboUrl.DataType <- new EnumValue<CellValues>(CellValues.String)
+
+            let cellCsfdRating = row.AppendChild(new Cell())
+            cellCsfdRating.DataType <- new EnumValue<CellValues>(CellValues.String)
+            cellCsfdRating.CellValue <- new CellValue(movie.CsfdUrl)
 
             let cellCsfdRating = row.AppendChild(new Cell())
             cellCsfdRating.DataType <- new EnumValue<CellValues>(CellValues.String)

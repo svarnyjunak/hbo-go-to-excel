@@ -18,7 +18,7 @@ let getHtmlDocument url =
     htmlDocument
 
 type HboMovie = {Name:string; HboUrl:string}
-type HboMovieWithRating = {Name:string; HboUrl:string; CsfdRating:string}
+type HboMovieWithRating = {Name:string; HboUrl:string; CsfdUrl:string; CsfdRating:string}
 
 
 let getHboGoMovies =
@@ -63,9 +63,8 @@ let getHboGoMovies =
         let csfdMovieUrl = getCsfdMovieUrl movie.Name
         printfn "%A" movie
         match csfdMovieUrl with
-            | url when url = "" -> {Name=movie.Name; HboUrl=movie.HboUrl; CsfdRating=""}
-            | url -> let rating = getCsfdRating csfdMovieUrl
-                     {Name=movie.Name; HboUrl=movie.HboUrl; CsfdRating=rating}
+            | url when url = "" -> {Name=movie.Name; HboUrl=movie.HboUrl; CsfdUrl=url; CsfdRating=""}
+            | url ->               {Name=movie.Name; HboUrl=movie.HboUrl; CsfdUrl=url; CsfdRating=getCsfdRating csfdMovieUrl}
 
     let moviesWithRating = nodeList |> List.map createHboMovie
                                     |> List.map createHboMovieWithRating
