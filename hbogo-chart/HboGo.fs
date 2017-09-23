@@ -3,10 +3,6 @@
 open FSharp.Data
 open HtmlAgilityPack
 open System
-open System.IO
-open DocumentFormat.OpenXml
-open DocumentFormat.OpenXml.Packaging
-open DocumentFormat.OpenXml.Spreadsheet
 
 let removeWhitespaces (s:string) =
     s.Trim('\n', '\r', '\t', ' ')

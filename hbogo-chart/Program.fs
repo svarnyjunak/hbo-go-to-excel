@@ -2,7 +2,6 @@
 // See the 'F# Tutorial' project for more help.
 
 open HboGo
-open Excel
 open System.Diagnostics
 
 [<EntryPoint>]
