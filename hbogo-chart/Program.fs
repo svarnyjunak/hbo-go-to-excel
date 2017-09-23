@@ -9,7 +9,8 @@ open System.Diagnostics
 let main argv = 
     let fileName = "movies.xlsx"
     let sheetName = "Movies"
-    Excel.createSpreadsheet fileName sheetName HboGo.getHboGoMovies
+    let movies = List.sortByDescending (fun m-> m.CsfdRating) HboGo.getHboGoMovies
+    Excel.createSpreadsheet fileName sheetName movies
     Process.Start fileName |> ignore
 
     0 // return an integer exit code
