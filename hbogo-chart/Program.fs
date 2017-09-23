@@ -3,12 +3,14 @@
 
 open HboGo
 open Excel
+open System.Diagnostics
 
 [<EntryPoint>]
 let main argv = 
     let fileName = "movies.xlsx"
     let sheetName = "Movies"
     Excel.createSpreadsheet fileName sheetName HboGo.getHboGoMovies
-    
+    Process.Start fileName |> ignore
+
     0 // return an integer exit code
     
