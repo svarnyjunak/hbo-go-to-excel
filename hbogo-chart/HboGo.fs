@@ -55,9 +55,15 @@ let getHboGoMovies =
     let createHboMovie (node:HtmlNode) =
         {Name=getHboMovieName node; HboUrl=getHboMovieUrl node}
     
+    let printMovie (movie: HboMovie) =
+        let previousColor = Console.ForegroundColor
+        Console.ForegroundColor <- ConsoleColor.DarkRed
+        printfn "%A" movie.Name
+        Console.ForegroundColor <- previousColor
+
     let createHboMovieWithRating (movie: HboMovie) =
+        printMovie movie
         let csfdMovieUrl = getCsfdMovieUrl movie.Name
-        printfn "%A" movie
         match csfdMovieUrl with
             | url when url = "" -> {Name=movie.Name; HboUrl=movie.HboUrl; CsfdUrl=url; CsfdRating=""}
             | url ->               {Name=movie.Name; HboUrl=movie.HboUrl; CsfdUrl=url; CsfdRating=getCsfdRating csfdMovieUrl}
