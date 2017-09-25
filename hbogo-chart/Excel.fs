@@ -1,6 +1,6 @@
 ﻿module Excel
 
-open HboGo
+open Types
 open ClosedXML.Excel
 
 let saveToExcel (filepath:string) (movies:HboMovieWithRating seq) =

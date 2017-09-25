@@ -57,7 +57,10 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Types.fs" />
+    <Compile Include="HtmlDownloader.fs" />
     <Compile Include="HboGo.fs" />
+    <Compile Include="Csfd.fs" />
     <Compile Include="Excel.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
